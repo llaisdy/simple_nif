@@ -11,7 +11,14 @@ Keywords:
 - nif
 - c
 
-More documentation forthcoming
+More documentation forthcoming.  For example:
+
+- overview: erlang list or tuple to C array
+- usage
+- brief codewalk
+
+
+
 
 
 
