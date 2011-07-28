@@ -2,8 +2,6 @@
 -export([get_params/1, init/0]).
 -on_load(init/0).
 
--record(params, {sum, mean, quartiles}).
-
 init() ->
     ok = erlang:load_nif("./simple_nif", 0).
 

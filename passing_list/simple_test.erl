@@ -7,23 +7,29 @@
 test(N, Max) ->
     Input = get_random_input(N, Max),
     io:format("Input: ~p~n~n", [Input]), 
-    WindowList = getWindowList(Input, 10, 5),
+    WindowList = get_window_list(Input, 10, 5),
     io:format("WindowList: ~p~n~n", [WindowList]), 
     ParamsList = lists:map(fun(W) -> simple:get_params(W) end,  WindowList),
-    ParamsList.
+    lists:foreach(fun(P) ->
+			  case is_record(P, params) of
+			      true ->
+				  io:format("~p~n", [P]);
+			      false ->
+				  io:format("~p  <-- ?~n", [P])
+			  end
+		  end, ParamsList).
 
-get_random_input(0, _Max) ->
+get_random_input(0, _) ->
     [];
 get_random_input(N, Max) ->
     [random:uniform(Max) | get_random_input(N-1,Max)].
 
-getWindowList(DataList, Size, _Offset) when length(DataList) < Size ->
-    [DataList ++ makeList(0, Size - length(DataList))];
+get_window_list(DataList, Size, _Offset) when length(DataList) < Size ->
+    [DataList ++ make_list(0, Size - length(DataList))];
+get_window_list(DataList, Size, Offset) ->
+    [lists:sublist(DataList, Size) | get_window_list(lists:nthtail(Offset, DataList), Size, Offset)].
 
-getWindowList(DataList, Size, Offset) ->
-    [lists:sublist(DataList, Size) | getWindowList(lists:nthtail(Offset, DataList), Size, Offset)].
-
-makeList(_Item, 0) ->
+make_list(_, 0) ->
     [];
-makeList(Item, N) ->
-    [Item | makeList(Item, N-1)].
+make_list(Item, N) ->
+    [Item | make_list(Item, N-1)].
