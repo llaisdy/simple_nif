@@ -1,7 +1,7 @@
 #include "erl_nif.h"
 #include "simple.h"
 
-static ERL_NIF_TERM get_params_nif(ErlNifEnv* env, 
+static ERL_NIF_TERM get_params_nif(ErlNifEnv* env,
 				   int argc, 
 				   ERL_NIF_TERM argv[])
 {

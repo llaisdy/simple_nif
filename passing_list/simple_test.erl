@@ -3,11 +3,13 @@
 -export([get_random_input/2]).
 
 -record(params, {sum, mean, quartiles}).
+-define(WINDOW_SIZE, 10).
+-define(WINDOW_OFFSET, 5).
 
 test(N, Max) ->
     Input = get_random_input(N, Max),
     io:format("Input: ~p~n~n", [Input]), 
-    WindowList = get_window_list(Input, 10, 5),
+    WindowList = get_window_list(Input, ?WINDOW_SIZE, ?WINDOW_OFFSET),
     io:format("WindowList: ~p~n~n", [WindowList]), 
     ParamsList = lists:map(fun(W) -> simple:get_params(W) end,  WindowList),
     lists:foreach(fun(P) ->
