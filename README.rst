@@ -84,15 +84,6 @@ The test script simple_test.erl models more closely the usage I have in mind.  T
   ok
   2>
 
-The code
-========
-
-
-# ... working here now ... #
-
-
-
-
 .. ---------- ---------- ----------
 
 .. _`ISC license`: http://en.wikipedia.org/wiki/ISC_license
